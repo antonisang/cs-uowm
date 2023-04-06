@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+/*
+Modify this value to adjust stack size.
+WARNING: Stack size of 5 supports AEM values up to
+9999
+*/
 #define STACK_SIZE 5
 
 typedef struct {
@@ -9,6 +14,7 @@ typedef struct {
     size_t Index;
 } StaticStack;
 
+// Initialize the stack by filling it with zeros
 void StaticStack_Init (StaticStack *stack) 
 {
     size_t i;
@@ -18,6 +24,7 @@ void StaticStack_Init (StaticStack *stack)
     stack -> Index = 0;
 }
 
+// Push an int item to the stack, returns true on a successful push and false on a fail
 bool StaticStack_Push (StaticStack *stack, int item)
 {
     if (stack -> Index < STACK_SIZE) {
@@ -28,6 +35,7 @@ bool StaticStack_Push (StaticStack *stack, int item)
     return false;
 }
 
+// Check whether the content of the passed stack is palindrome or not 
 bool StaticStack_IsPalindrome (StaticStack *stack)
 {
     int bottom = 0, top = stack -> Index - 1;
@@ -43,6 +51,12 @@ bool StaticStack_IsPalindrome (StaticStack *stack)
 
 }
 
+/*
+Push the remainder of a number when dividing by 8 to 
+the stack and return the quotient of division with 8. 
+Use this function recursively to obtain the octal 
+form of a decimal number into a stack
+*/
 long OctalDigit (StaticStack *stack, int num) 
 {
     if (StaticStack_Push(stack, num % 8)) {
@@ -61,7 +75,7 @@ int main(void)
     StaticStack_Init(&ss);
 
     // Change this value to your actual student ID
-    AEM = 0000;
+    AEM = 1111;
     
     temp = AEM;
     do {
