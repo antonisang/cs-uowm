@@ -16,7 +16,7 @@ typedef struct {
 } Student;
 
 
-bool IsPrime (int num) 
+bool IsPrime(int num) 
 {
     int i, x;
     if (num < 2) return false;
@@ -28,7 +28,7 @@ bool IsPrime (int num)
     return true;
 }
 
-float FindGrade (Student stds[], int AEM)
+float FindGrade(Student stds[], int AEM)
 {
     int middle, counter=1, left=0, right=ARRAY_SIZE-1;
     while (left <= right)
@@ -43,7 +43,7 @@ float FindGrade (Student stds[], int AEM)
     }
 }
 
-int CountBiggerGrade (Student stds[], float grade)
+int CountBiggerGrade(Student stds[], float grade)
 {
     int counter = 0;
     for (int i = 0; i < ARRAY_SIZE; i++)
@@ -54,7 +54,7 @@ int CountBiggerGrade (Student stds[], float grade)
     return counter;
 }
 
-int main (void) 
+int main(void) 
 {
     // Change this value to your actual student ID
     srand(1111);

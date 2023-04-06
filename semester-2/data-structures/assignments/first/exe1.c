@@ -15,7 +15,7 @@ typedef struct {
 } StaticStack;
 
 // Initialize the stack by filling it with zeros
-void StaticStack_Init (StaticStack *stack) 
+void StaticStack_Init(StaticStack *stack) 
 {
     size_t i;
     for (i = 0; i < STACK_SIZE; i++) {
@@ -25,7 +25,7 @@ void StaticStack_Init (StaticStack *stack)
 }
 
 // Push an int item to the stack, returns true on a successful push and false on a fail
-bool StaticStack_Push (StaticStack *stack, int item)
+bool StaticStack_Push(StaticStack *stack, int item)
 {
     if (stack -> Index < STACK_SIZE) {
         stack -> Array[stack->Index] = item;
@@ -36,7 +36,7 @@ bool StaticStack_Push (StaticStack *stack, int item)
 }
 
 // Check whether the content of the passed stack is palindrome or not 
-bool StaticStack_IsPalindrome (StaticStack *stack)
+bool StaticStack_IsPalindrome(StaticStack *stack)
 {
     int bottom = 0, top = stack -> Index - 1;
     if (stack -> Index == 1) return true;
@@ -57,7 +57,7 @@ the stack and return the quotient of division with 8.
 Use this function recursively to obtain the octal 
 form of a decimal number into a stack
 */
-long OctalDigit (StaticStack *stack, int num) 
+long OctalDigit(StaticStack *stack, int num) 
 {
     if (StaticStack_Push(stack, num % 8)) {
         return num / 8;
