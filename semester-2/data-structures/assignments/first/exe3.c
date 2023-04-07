@@ -15,6 +15,7 @@ typedef struct {
     Customer customers[MAX_QUEUE_SIZE];
     int frontIndex;
     int rearIndex;
+    int itemsCount;
 } CashDesk;
 
 Customer customerCreate(int id, int items) {
@@ -35,6 +36,7 @@ CashDesk *cashDesksInit(void) {
         }
         cashDesks[i].frontIndex = 0;
         cashDesks[i].rearIndex = 0;
+        cashDesks[i].itemsCount = 0;
     }
     return cashDesks;
 }
