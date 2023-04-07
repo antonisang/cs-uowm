@@ -19,6 +19,12 @@ typedef struct {
     int new_size;
 } CashDesk;
 
+Customer customerCreate(int id, int items) {
+    Customer cr;
+    cr.id = id;
+    cr.items = items;
+    return cr;
+}
 
 int main(void)
 {
