@@ -43,6 +43,14 @@ CashDesk *cashDesksInit(void) {
     return cashDesks;
 }
 
+bool cashDeskIsEmpty(CashDesk cd) {
+    return cd.newSize == 0;
+}
+
+bool cashDeskIsFull(CashDesk cd) {
+    return cd.newSize == MAX_QUEUE_SIZE - 1;
+}
+
 int main(void)
 {
     CashDesk *cashDesks = cashDesksInit();
