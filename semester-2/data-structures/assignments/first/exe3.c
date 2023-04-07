@@ -13,10 +13,10 @@ typedef struct {
 
 typedef struct {
     Customer customers[MAX_QUEUE_SIZE];
-    int fIndex;
-    int rIndex;
-    int old_size;
-    int new_size;
+    int frontIndex;
+    int rearIndex;
+    int oldSize;
+    int newSize;
 } CashDesk;
 
 Customer customerCreate(int id, int items) {
