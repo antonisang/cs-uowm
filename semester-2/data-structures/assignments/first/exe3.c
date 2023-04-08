@@ -98,6 +98,15 @@ bool _cashDesksAllEqual(CashDesk cds[]) {
     return true;
 }
 
+bool cashDesksAllEmpty(CashDesk cds[]) {
+    int i;
+    for (i = 0; i < NO_OF_CASH_DESKS; i++)
+    {
+        if (cds[i].itemsCount != 0) return false;
+    }
+    return true;
+}
+
 int _cashDeskLessItems(CashDesk cds[]) {
     int i, cd=0, lowestItems = MAX_QUEUE_SIZE;
     for (i = 0; i < NO_OF_CASH_DESKS; i++)
