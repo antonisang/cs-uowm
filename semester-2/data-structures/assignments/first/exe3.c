@@ -113,10 +113,12 @@ int _cashDeskLessItems(CashDesk cds[]) {
     int i, cd=0, lowestItems = MAX_QUEUE_SIZE;
     for (i = 0; i < NO_OF_CASH_DESKS; i++)
     {
-        if (cds[i].itemsCount < lowestItems) cd = i;
+        if (cds[i].itemsCount < lowestItems) {
+            lowestItems = cds[i].itemsCount;
+            cd = i;
+        };
     }
     return cd;
-    
 }
 
 int cashDeskSelect(CashDesk cds[]) {
