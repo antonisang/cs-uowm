@@ -66,10 +66,12 @@ void cashDeskRemove(CashDesk *cd) {
     if (!cashDeskIsEmpty(*cd)) {
         if (cd->frontIndex == cd->rearIndex)
         {
+            cd->customers[cd->frontIndex] = customerCreate(0, 0);
             cd->frontIndex = -1;
             cd->rearIndex = -1;
             cd->itemsCount--;
         } else {
+            cd->customers[cd->frontIndex] = customerCreate(0, 0);
             cd->frontIndex = (cd->frontIndex + 1) % MAX_QUEUE_SIZE;
             cd->itemsCount--;
         }
