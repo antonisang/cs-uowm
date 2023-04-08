@@ -32,7 +32,7 @@ CashDesk *cashDesksInit(void) {
     {
         for (j = 0; j < MAX_QUEUE_SIZE; j++)
         {
-            cashDesks[i].customers[j] = customerCreate(j, j);
+            cashDesks[i].customers[j] = customerCreate(0, 0);
         }
         cashDesks[i].frontIndex = -1;
         cashDesks[i].rearIndex = -1;
