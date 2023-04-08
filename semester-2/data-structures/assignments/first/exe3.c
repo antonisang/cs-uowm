@@ -55,10 +55,6 @@ void cashDeskAdd(CashDesk *cd, Customer cm) {
         cd->rearIndex = (cd->rearIndex + 1) % MAX_QUEUE_SIZE;
         cd->customers[cd->rearIndex] = cm;
         cd->itemsCount++;
-    } else {
-        printf("Cash desk can't accept any more customers!");
-        printf("OVERFLOW! Shutting down...");
-        exit(1);
     }
 };
 
@@ -75,10 +71,6 @@ void cashDeskRemove(CashDesk *cd) {
             cd->frontIndex = (cd->frontIndex + 1) % MAX_QUEUE_SIZE;
             cd->itemsCount--;
         }
-    } else {
-        printf("There are no customers to kick out of the queue!");
-        printf("UNDERFLOW! Shutting down...");
-        exit(1);
     }
 }
 
