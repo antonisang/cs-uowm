@@ -34,8 +34,8 @@ CashDesk *cashDesksInit(void) {
         {
             cashDesks[i].customers[j] = customerCreate(j, j);
         }
-        cashDesks[i].frontIndex = 0;
-        cashDesks[i].rearIndex = 0;
+        cashDesks[i].frontIndex = -1;
+        cashDesks[i].rearIndex = -1;
         cashDesks[i].itemsCount = 0;
     }
     return cashDesks;
