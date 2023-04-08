@@ -42,11 +42,11 @@ CashDesk *cashDesksInit(void) {
 }
 
 bool cashDeskIsEmpty(CashDesk cd) {
-    return cd.frontIndex == 0;
+    return cd.frontIndex == -1;
 }
 
 bool cashDeskIsFull(CashDesk cd) {
-    return cd.rearIndex == MAX_QUEUE_SIZE - 1;
+    return ((cd.frontIndex == cd.rearIndex + 1) || (cd.frontIndex == 0 && cd.rearIndex == MAX_QUEUE_SIZE -1));
 }
 
 
