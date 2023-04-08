@@ -80,6 +80,41 @@ void cashDeskRemove(CashDesk *cd) {
     }
 }
 
+bool _cashDesksAllFull(CashDesk cds[]) {
+    int i;
+    for (i = 0; i < NO_OF_CASH_DESKS; i++)
+    {
+        if (!cashDeskIsFull(cds[i])) return false;
+    }
+    return true;
+}
+
+bool _cashDesksAllEqual(CashDesk cds[]) {
+    int i, temp = cds[0].itemsCount;
+    for (i = 1; i < NO_OF_CASH_DESKS; i++)
+    {
+        if (cds[i].itemsCount != temp) return false;
+    }
+    return true;
+}
+
+int _cashDeskLessItems(CashDesk cds[]) {
+    int i, cd=0, lowestItems = MAX_QUEUE_SIZE;
+    for (i = 0; i < NO_OF_CASH_DESKS; i++)
+    {
+        if (cds[i].itemsCount < lowestItems) cd = i;
+    }
+    return cd;
+    
+}
+
+int cashDeskSelect(CashDesk cds[]) {
+    int i, selectedDesk = -1, lowestQueueItems = MAX_QUEUE_SIZE + 5, check = cds[0].itemsCount;
+    if (_cashDesksAllFull(cds)) return -1;
+    if (_cashDesksAllEqual(cds)) return rand() % 4;
+    return _cashDeskLessItems(cds);
+}
+
 int main(void)
 {
     CashDesk *cashDesks = cashDesksInit();
