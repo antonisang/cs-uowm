@@ -115,6 +115,12 @@ int cashDeskSelect(CashDesk cds[]) {
     return _cashDeskLessItems(cds);
 }
 
+int randomNumber(int max, int min) {
+    int mx = max;
+    if (min == 0) max++;
+    return rand() % max + min;
+};
+
 int main(void)
 {
     CashDesk *cashDesks = cashDesksInit();
