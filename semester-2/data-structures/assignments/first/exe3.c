@@ -132,6 +132,20 @@ int randomNumber(int max, int min) {
     return rand() % max + min;
 };
 
+void customersServe(CashDesk cds[]) {
+    int i;
+    for (i = 0; i < NO_OF_CASH_DESKS; i++)
+    {
+        if (cds[i].customers[cds[i].frontIndex].items <= 3) {
+            cashDeskRemove(&cds[i]);
+            printf("%15d%15d%15d", 0, 0, cds[i].itemsCount);
+            continue;
+        };
+        cds[i].customers[cds[i].frontIndex].items -= 3;
+        printf("%15d%15d%15d", cds[i].customers[cds[i].frontIndex].id, cds[i].customers[cds[i].frontIndex].items, cds[i].itemsCount);
+    }
+}
+
 int main(void)
 {
     CashDesk *cashDesks = cashDesksInit();
