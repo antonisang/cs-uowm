@@ -116,7 +116,7 @@ int _cashDeskLessItems(CashDesk cds[]) {
 int cashDeskSelect(CashDesk cds[]) {
     int i, selectedDesk = -1, lowestQueueItems = MAX_QUEUE_SIZE + 5, check = cds[0].itemsCount;
     if (_cashDesksAllFull(cds)) return -1;
-    if (_cashDesksAllEqual(cds)) return rand() % 4;
+    if (_cashDesksAllEqual(cds)) return rand() % NO_OF_CASH_DESKS;
     return _cashDeskLessItems(cds);
 }
 
