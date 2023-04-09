@@ -150,7 +150,57 @@ void printHeaders(void) {
 
 int main(void)
 {
+    int i, dice, selectedDesk, roundCount=1, customersCount=0;
+    char action;
+    Customer customer;
     CashDesk *cashDesks = cashDesksInit();
-    
+
+    printHeaders();
+
+    srand(4470);
+    do {
+        dice = randomNumber(9, 1);
+        action = dice > 2 ? '-' : '+';
+        printf("\n%-7d%-6d%-7c ", roundCount, dice, action);
+        if (dice < 3) {
+            selectedDesk = cashDeskSelect(cashDesks);
+            if (selectedDesk == -1) {
+                for (i = 0; i < NO_OF_CASH_DESKS; i++)
+                {
+                    printf("| %-4d%-6d%-6d|  ", cashDesks[i].customers[cashDesks[i].frontIndex].id, cashDesks[i].customers[cashDesks[i].frontIndex].items, cashDesks[i].itemsCount);
+                }
+                roundCount++;
+                continue;
+            } else {
+                customer = customerCreate(customersCount + 1, randomNumber(16, 2));
+                cashDeskAdd(&cashDesks[selectedDesk], customer);
+                customersCount++;
+                for (i = 0; i < NO_OF_CASH_DESKS; i++)
+                {
+                    if (selectedDesk == i)
+                    {
+                        printf("| %-4d%-6d%-6d|  ", customer.id, customer.items, cashDesks[i].itemsCount);
+                        roundCount++;
+                        continue;
+                    }
+                    if (cashDeskIsEmpty(cashDesks[i]))
+                    {
+                        printf("| %-4d%-6d%-6d|  ", 0, 0, cashDesks[i].itemsCount);
+                        continue;
+                    }
+                    printf("| %-4d%-6d%-6d|  ", cashDesks[i].customers[cashDesks[i].frontIndex].id, cashDesks[i].customers[cashDesks[i].frontIndex].items, cashDesks[i].itemsCount);
+                } 
+            }
+        } else {
+            customersServe(cashDesks);
+            roundCount++;
+        }
+    } while (customersCount != NO_OF_CUSTOMERS);
+    while (!cashDesksAllEmpty(cashDesks))
+    {
+        printf("\n%-7d%-6d%-7c ", roundCount, 0, '-');
+        customersServe(cashDesks);
+        roundCount++;
+    }
     return 0;
 }
