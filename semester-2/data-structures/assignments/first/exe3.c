@@ -132,11 +132,11 @@ void customersServe(CashDesk cds[]) {
     {
         if (cds[i].customers[cds[i].frontIndex].items <= 3) {
             cashDeskRemove(&cds[i]);
-            printf("%15d%15d%15d", 0, 0, cds[i].itemsCount);
+            printf("| %-4d%-6d%-6d|  ", 0, 0, cds[i].itemsCount);
             continue;
         };
         cds[i].customers[cds[i].frontIndex].items -= 3;
-        printf("%15d%15d%15d", cds[i].customers[cds[i].frontIndex].id, cds[i].customers[cds[i].frontIndex].items, cds[i].itemsCount);
+        printf("| %-4d%-6d%-6d|  ", cds[i].customers[cds[i].frontIndex].id, cds[i].customers[cds[i].frontIndex].items, cds[i].itemsCount);
     }
 }
 
