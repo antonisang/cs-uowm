@@ -140,6 +140,14 @@ void customersServe(CashDesk cds[]) {
     }
 }
 
+void printHeaders(void) {
+    int i;
+    printf("%20c", ' ');
+    for (i = 0; i < NO_OF_CASH_DESKS; i++) printf(" |  Cash Desk - %d  | ", i);
+    printf("\nRound  Dice  Action  ");
+    for (i = 0; i < NO_OF_CASH_DESKS; i++) printf("| No  Cart  Total |  ");    
+}
+
 int main(void)
 {
     CashDesk *cashDesks = cashDesksInit();
