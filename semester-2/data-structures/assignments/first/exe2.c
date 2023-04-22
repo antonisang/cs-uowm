@@ -45,8 +45,8 @@ float FindGrade(Student stds[], int AEM)
 
 int CountBiggerGrade(Student stds[], float grade)
 {
-    int counter = 0;
-    for (int i = 0; i < ARRAY_SIZE; i++)
+    int i, counter = 0;
+    for (i = 0; i < ARRAY_SIZE; i++)
     {
         printf("Search %d student AEM: %d\n", i + 1, stds[i].AEM);
         if (stds[i].Grade > grade) counter++;
