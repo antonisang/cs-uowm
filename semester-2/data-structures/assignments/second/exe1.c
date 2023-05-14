@@ -8,8 +8,8 @@ typedef struct {
     unsigned int aem;
 } student;
 
-typedef struct {
-    student data;
-    treeNode *nodeLeft;
-    treeNode *nodeRight;
+typedef struct treeNode {
+    student *data;
+    struct treeNode *nodeLeft;
+    struct treeNode *nodeRight;
 } treeNode;
