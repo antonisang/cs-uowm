@@ -13,3 +13,7 @@ typedef struct treeNode {
     struct treeNode *nodeLeft;
     struct treeNode *nodeRight;
 } treeNode;
+
+int main(void) {
+    return 0;
+}
