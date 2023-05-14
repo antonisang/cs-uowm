@@ -15,5 +15,10 @@ typedef struct treeNode {
 } treeNode;
 
 int main(void) {
+    // Variable declarations
+    int i=1;
+    FILE *fp;
+    student *studentFile;
+    treeNode *root;
     return 0;
 }
