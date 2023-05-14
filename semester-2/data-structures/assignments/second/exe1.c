@@ -23,6 +23,10 @@ int main(void) {
     FILE *fp;
     student *studentFile;
     treeNode *root;
+
+    // Open file
+    fp = fopen("Students", "rb");
+    fclose(fp);
     return 0;
 }
 
