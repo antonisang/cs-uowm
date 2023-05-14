@@ -26,6 +26,25 @@ int main(void) {
 
     // Open file
     fp = fopen("Students", "rb");
+
+    // Create root node
+    fseek(fp, 0, SEEK_SET);
+    studentFile = malloc(sizeof(student));
+    fread(studentFile, sizeof(student), 1, fp);
+    root = nodeCreate(studentFile);
+
+    // Insert nodes to tree
+    while (1)
+    {
+        fseek(fp, i * sizeof(student), SEEK_SET);
+        studentFile = malloc(sizeof(student));
+        fread(studentFile, sizeof(student), 1, fp);
+        // Break loop if EOF
+        if (feof(fp)) break;
+        nodeInsert(root, nodeCreate(studentFile));
+        i++;
+    }
+
     fclose(fp);
     return 0;
 }
