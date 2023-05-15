@@ -57,6 +57,10 @@ int main(void) {
     // Query 2
     printf("\n\n****** QUERY 2 ******\n");
     targetStudent = nodeSeek(root, 4467, 1);
+    // Query 3
+    printf("\n\n****** QUERY 3 ******\n");
+    printf("\n\nUsing the in-order traversal method we get that the average \ngrade of students in range 4001-4220 is: %.2f", rangeAverage(root, 4001, 4220));
+
 
     fclose(fp);
     return 0;
