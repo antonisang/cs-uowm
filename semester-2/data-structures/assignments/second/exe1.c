@@ -17,6 +17,8 @@ typedef struct treeNode {
 void nodeInsert (treeNode *root, treeNode *node);
 treeNode *nodeCreate (student *stud);
 treeNode *nodeSeek (treeNode *root, unsigned int key, short int verbose);
+void _inorderAverage (treeNode *root, unsigned int start, unsigned int end, float *sum, int *count, int *compCount);
+float rangeAverage (treeNode *root, unsigned int start, unsigned int end);
 
 
 int main(void) {
@@ -100,4 +102,37 @@ treeNode *nodeSeek (treeNode *root, unsigned int key, short int verbose) {
             return NULL;
         }
     }
+}
+
+void _inorderAverage (treeNode *root, unsigned int start, unsigned int end, float *sum, int *count, int *compCount) {
+    if (root == NULL) return;
+    _inorderAverage(root->nodeLeft, start, end, sum, count, compCount);
+    // If AEM is in range...
+    printf("Comparing if %i is in range of %i - %i...", root->data->aem, start, end);
+    (*compCount)++;
+    if (root->data->aem >= start && root->data->aem <= end) {
+        printf("IT IS\n");
+        // ...add root->data->grade to sum and increment by 1 the count
+        (*sum) += root->data->grade;
+        (*count)++;
+    } else printf("IT'S NOT\n");
+    _inorderAverage(root->nodeRight, start, end, sum, count, compCount);
+}
+
+float rangeAverage (treeNode *root, unsigned int start, unsigned int end) {
+    int count=0, compCount=0;
+    float sum=0;
+
+    // Pass the memory address of sum, count and compCount in 
+    // order to allow _inorderAverage to modify the values of 
+    // sum, count and compCount
+    _inorderAverage(root, start, end, &sum, &count, &compCount);
+
+    // Case count == 0, no nodes found within range
+    if (!count) return 0;
+
+    printf("\nTotal number of comparisons: %d\n", compCount);
+    printf("Time complexity is: O(n)");
+
+    return sum/count;
 }
