@@ -16,6 +16,8 @@ typedef struct treeNode {
 
 void nodeInsert (treeNode *root, treeNode *node);
 treeNode *nodeCreate (student *stud);
+treeNode *nodeSeek (treeNode *root, unsigned int key, short int verbose);
+
 
 int main(void) {
     // Variable declarations
@@ -65,4 +67,28 @@ treeNode *nodeCreate (student *stud) {
     node->nodeLeft = NULL;
     node->nodeRight = NULL;
     return node;
+}
+
+treeNode *nodeSeek (treeNode *root, unsigned int key, short int verbose) {
+    if (verbose) printf("Comparing %i with %i -> ", root->data->aem, key);
+    if (root->data->aem == key) {
+        if (verbose) printf("Found key: %i", key);
+        return root;
+    } else if (root->data->aem > key) {
+        if (verbose) printf("Node key is bigger than target key, going left...\n");
+        if (root->nodeLeft != NULL) {
+            nodeSeek(root->nodeLeft, key, verbose);
+        } else {
+            if (verbose) printf("No left node was found, the key is probably missing from the tree...\n");
+            return NULL;
+        }
+    } else {
+        if (verbose) printf("Node key is smaller than target key, going right...\n");
+        if (root->nodeRight != NULL) {
+            nodeSeek(root->nodeRight, key, verbose);
+        } else {
+            if (verbose) printf("No right node was found, the key is probably missing from the tree...\n");
+            return NULL;
+        }
+    }
 }
