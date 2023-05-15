@@ -26,7 +26,7 @@ int main(void) {
     // Variable declarations
     int i=1;
     FILE *fp;
-    student *studentFile;
+    student *studentFile, *tempStudent;
     treeNode *root;
     treeNode *targetStudent;
 
@@ -61,6 +61,13 @@ int main(void) {
     // Query 3
     printf("\n\n****** QUERY 3 ******\n");
     printf("\n\nUsing the in-order traversal method we get that the average \ngrade of students in range 4001-4220 is: %.2f", rangeAverage(root, 4001, 4220));
+    // Query 4
+    printf("\n\n****** QUERY 4 ******\n");
+    tempStudent = nodeSeek(root, 4645, 0)->data;
+    nodeRemove(root, 4645);
+    tempStudent->aem = 4635;
+    nodeInsert(root, nodeCreate(tempStudent));
+    nodeSeek(root, 4467, 1);
 
 
     fclose(fp);
