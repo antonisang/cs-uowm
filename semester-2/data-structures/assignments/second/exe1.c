@@ -15,6 +15,7 @@ typedef struct treeNode {
 } treeNode;
 
 void nodeInsert (treeNode *root, treeNode *node);
+treeNode *nodeRemove (treeNode *root, unsigned int key);
 treeNode *nodeCreate (student *stud);
 treeNode *nodeSeek (treeNode *root, unsigned int key, short int verbose);
 void _inorderAverage (treeNode *root, unsigned int start, unsigned int end, float *sum, int *count, int *compCount);
@@ -139,4 +140,44 @@ float rangeAverage (treeNode *root, unsigned int start, unsigned int end) {
     printf("Time complexity is: O(n)");
 
     return sum/count;
+}
+
+// Source: https://www.geeksforgeeks.org/deletion-in-binary-search-tree/
+treeNode *nodeRemove (treeNode *root, unsigned int key)
+{
+    if (root == NULL) return root;
+
+    if (root->data->aem > key) {
+        root->nodeLeft = nodeRemove(root->nodeLeft, key);
+        return root;
+    } else if (root->data->aem < key) {
+        root->nodeRight = nodeRemove(root->nodeRight, key);
+        return root;
+    }
+
+    if (root->nodeLeft == NULL) {
+        treeNode *temp = root->nodeRight;
+        free(root);
+        return temp;
+    } else if (root->nodeRight == NULL) {
+        treeNode *temp = root->nodeLeft;
+        free(root);
+        return temp;
+    } else {
+        treeNode *succParent = root;
+        treeNode *succ = root->nodeRight;
+
+        while (succ->nodeLeft != NULL) {
+            succParent = succ;
+            succ = succ->nodeLeft;
+        }
+
+        if (succParent != root)
+            succParent->nodeLeft = succ->nodeRight;
+        else
+            succParent->nodeRight = succ->nodeRight;
+        root->data = succ->data;
+        free(succ);
+        return root;
+    }
 }
