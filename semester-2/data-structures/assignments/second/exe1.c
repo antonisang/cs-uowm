@@ -25,6 +25,7 @@ int main(void) {
     FILE *fp;
     student *studentFile;
     treeNode *root;
+    treeNode *targetStudent;
 
     // Open file
     fp = fopen("Students", "rb");
@@ -46,6 +47,11 @@ int main(void) {
         nodeInsert(root, nodeCreate(studentFile));
         i++;
     }
+
+    // Query 1
+    printf("****** QUERY 1 ******\n");
+    targetStudent = nodeSeek(root, 4467, 0);
+    printf("The grade of student with ID %d is %.2f", 4467, targetStudent->data->grade);
 
     fclose(fp);
     return 0;
