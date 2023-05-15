@@ -52,6 +52,9 @@ int main(void) {
     printf("****** QUERY 1 ******\n");
     targetStudent = nodeSeek(root, 4467, 0);
     printf("The grade of student with ID %d is %.2f", 4467, targetStudent->data->grade);
+    // Query 2
+    printf("\n\n****** QUERY 2 ******\n");
+    targetStudent = nodeSeek(root, 4467, 1);
 
     fclose(fp);
     return 0;
